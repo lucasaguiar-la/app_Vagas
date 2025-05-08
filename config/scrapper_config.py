@@ -1,2 +1,5 @@
 SITE_URL='https://br.linkedin.com/'
 LOGIN_BUTTON = 'nav__button-secondary'
+ID_USERNAME='username'
+ID_PASSWORD='password'
+VALIDATE_LOGIN_BUTTON='btn__primary--large'
