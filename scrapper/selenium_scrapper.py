@@ -1,35 +1,29 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from time import sleep
+from config.scrapper_config import(
+    LINKEDIN_URL,
+    CSS_CLASS
+    )
 
-from config.scrapper_config import (
-    SITE_URL,
-    LOGIN_BUTTON,
-    ID_USERNAME,
-    ID_PASSWORD,
-    VALIDATE_LOGIN_BUTTON
-)
+import json
 
-def run_bot(login, password):
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service)
+class Extractor:
+    def __init__(self):
+        self.vacacy = []
+        self.driver = webdriver.Chrome()
 
-    driver.get(url=SITE_URL)
+    def run_bot(self):
+        self.driver.get(url=LINKEDIN_URL)
+        vacacys_links = self.driver.find_element(by=By.CSS_SELECTOR, value=CSS_CLASS)
 
-    login_field = driver.find_element(by=By.CLASS_NAME, value=LOGIN_BUTTON)
-    login_field.click()
-    sleep(2)
+        for vacacy_job in vacacys_links:
+            link = vacacys_links.get_attribute('href')
+            self.vacacy.append({
+                "job_url": link
+            })
 
-    username_field = driver.find_element(by=By.ID, value=ID_USERNAME)
-    username_field.send_keys(login)
-    sleep(0.5)
+        with open('result.json', 'w', encoding='utf-8') as file:
+            json.dump(self.vacacy, file, indent=2)
 
-    password_field = driver.find_element(by=By.ID, value=ID_PASSWORD)
-    password_field.send_keys(password)
-    sleep(0.5)
-
-    validate_button = driver.find_element(by=By.CLASS_NAME, value=VALIDATE_LOGIN_BUTTON)
-    validate_button.click()
-    sleep(3)
+        self.driver.quit()
+        return 'Arquivo salvo!'

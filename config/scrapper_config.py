@@ -1,5 +1,2 @@
-SITE_URL='https://br.linkedin.com/'
-LOGIN_BUTTON = 'nav__button-secondary'
-ID_USERNAME='username'
-ID_PASSWORD='password'
-VALIDATE_LOGIN_BUTTON='btn__primary--large'
+LINKEDIN_URL='https://www.linkedin.com/jobs/search/?keywords=Engenheiro%20de%20dados&geoId=104746682'
+CSS_CLASS='a.base-card__full-link[data-tracking-control-name="public_jobs_jserp-result_search-card"]'

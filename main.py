@@ -1,11 +1,8 @@
-from scrapper.selenium_scrapper import run_bot
-from dotenv import load_dotenv
+from scrapper.selenium_scrapper import Extractor
+from config.scrapper_config import LINKEDIN_URL
 
-import os
 
-load_dotenv()
+play = Extractor()
 
-login = os.getenv('LOGIN')
-password = os.getenv('PASSWORD')
-
-run_bot(login=login, password=password)
+req = play.run_bot()
+print(req)
