@@ -1,3 +1,6 @@
 LINKEDIN_URL='https://www.linkedin.com/jobs/search/?keywords=Engenheiro%20de%20dados&geoId=104746682'
 LINK_CLASS='a.base-card__full-link[data-tracking-control-name="public_jobs_jserp-result_search-card"]'
-TITLE_CLASS='span.sr-only'
+TITLE_CLASS='h1.top-card-layout__title'
+COMPANY_CLASS='a.topcard__org-name-link'
+DATETIME_CLASS='span.posted-time-ago__text'
+DESCRIPTION_CLASS='div.show-more-less-html__markup'
