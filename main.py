@@ -1,8 +1,4 @@
-from scrapper.selenium_scrapper import Extractor
-from config.scrapper_config import LINKEDIN_URL
+from scrapper.selenium_scrapper import extractor
 
-
-play = Extractor()
-
-req = play.run_bot()
-print(req)
+run = extractor()
+print('\nSessão finalizada!')
