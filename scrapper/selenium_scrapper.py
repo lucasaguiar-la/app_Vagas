@@ -5,7 +5,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from scrapper.utils import format_html
 from config.scrapper_config import(
     LINKEDIN_URL,
     LINK_CLASS,
