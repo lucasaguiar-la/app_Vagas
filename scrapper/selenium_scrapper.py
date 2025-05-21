@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from utils.logger_config import setup_logger
 from config.scrapper_config import(
     LINKEDIN_URL,
     LINK_CLASS,
@@ -14,6 +15,8 @@ from config.scrapper_config import(
     DESCRIPTION_CLASS,
     DATETIME_CLASS
     )
+
+logger = setup_logger()
 
 def extractor():
     chrome_options = Options()
@@ -24,7 +27,7 @@ def extractor():
     chrome_options.add_argument('--disable-blink-features=AutomationControlled')
     chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
 
-    print('\nIniciando extração...')
+    logger.info('Iniciando extração...')
     driver = webdriver.Chrome(options=chrome_options)
     driver.get(url=LINKEDIN_URL)
 
@@ -54,7 +57,7 @@ def extractor():
 
         return job_object
     except Exception as e:
-        print(f'Algo deu errado na requisição: {e}')
+        logger.error(f'Algo deu errado na requisição: {e}')
         return False
     finally:
         driver.quit()
