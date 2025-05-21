@@ -16,7 +16,7 @@ from config.scrapper_config import(
     DATETIME_CLASS
     )
 
-logger = setup_logger()
+logger = setup_logger(name='Scrapper')
 
 def extractor():
     chrome_options = Options()
