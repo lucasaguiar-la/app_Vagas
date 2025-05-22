@@ -1,14 +1,13 @@
 from time import sleep
 from utils.logger_config import setup_logger
-from scrapper.selenium_scrapper import extractor
-from scrapper.transformer import transformer
+from src.extractor import extractor
+from src.transformer import transformer
 
 logger = setup_logger(name='Workflow')
 
 def workflow():
     logger.info('Sessão iniciada!')
     job_vacancy = extractor()
-
     if job_vacancy:
         data_transformed = transformer(data=job_vacancy)
 
