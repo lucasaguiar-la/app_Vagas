@@ -8,6 +8,7 @@ logger = setup_logger(name='Transformer')
 def transformer(data):
     logger.info('Iniciando tratamento...')
     sleep(0.5)
+
     try:
         soup = BeautifulSoup(data['Descrição'], 'html.parser')
         clean_text = soup.get_text(separator='\n').strip()

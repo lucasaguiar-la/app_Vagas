@@ -2,13 +2,16 @@ from time import sleep
 from utils.logger_config import setup_logger
 from src.extractor import extractor
 from src.transformer import transformer
+from src.loader import save_data_raw
 
 logger = setup_logger(name='Workflow')
 
 def workflow():
     logger.info('Sessão iniciada!')
+
     job_vacancy = extractor()
     if job_vacancy:
+        save_data_raw(data=job_vacancy)
         data_transformed = transformer(data=job_vacancy)
 
         if data_transformed:
