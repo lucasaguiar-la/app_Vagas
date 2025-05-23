@@ -36,9 +36,7 @@ def transformer(data):
         logger.info(
             f'\nTítulo da vaga: {formated_data['titulo']}\n'
             f'Empresa: {formated_data['empresa']}\n'
-            f'Data da postagem: {formated_data['data_postagem']}\n'
-            f'Descrição: {formated_data['descricao']}\n\n'
-            f'Link da vaga: {formated_data['url']}'
+            f'Data da postagem: {formated_data['data_postagem']}'
             )
 
         return formated_data

@@ -26,6 +26,14 @@ def connect_mongodb():
         logger.error(f'Erro ao conectar com MongoDB: {e}')
         raise
 
+def list_all_data():
+    client, collection = connect_mongodb()
+
+    print('Arquivos salvos:')
+    for idx, doc in enumerate(collection.find(), start=1):
+        print(f'{idx}º Registro: {doc}')
+    client.close()
+
 def save_data_raw(data):
     logger.info('Salvando dados brutos...')
 
@@ -33,7 +41,6 @@ def save_data_raw(data):
         client, collection = connect_mongodb()
         collection.insert_one(data)
         logger.info('Dados brutos salvos com sucesso!')
-        print(f'Dado salvo => {collection.find_one()}')
         return True
     except Exception as e:
         logger.error(f'Erro ao salvar dados brutos: {e}')
