@@ -9,10 +9,17 @@ logger = setup_logger(name='Workflow')
 def workflow():
     logger.info('Sessão iniciada!')
 
-    job_vacancy = extractor()
-    if job_vacancy:
-        save_data_raw(data=job_vacancy)
-        data_transformed = transformer(data=job_vacancy)
+    job_objects = extractor()
+
+    if job_objects:
+        for job in job_objects:
+            try:
+                save_data_raw(data=job)
+                data_transformed = transformer(data=job)
+        
+            except Exception as e:
+                logger.error(f'Erro ao salvar e tratar o dado: {e}')
+                continue
 
         if data_transformed:
             logger.info('Dados tratados com sucesso!')

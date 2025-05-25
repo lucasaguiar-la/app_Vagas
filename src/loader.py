@@ -21,7 +21,9 @@ def connect_mongodb():
         collection = db[mongo_collection]
 
         logger.info('Conexão estabelecida!')
+
         return client, collection
+
     except Exception as e:
         logger.error(f'Erro ao conectar com MongoDB: {e}')
         raise
@@ -42,8 +44,10 @@ def save_data_raw(data):
         collection.insert_one(data)
         logger.info('Dados brutos salvos com sucesso!')
         return True
+
     except Exception as e:
         logger.error(f'Erro ao salvar dados brutos: {e}')
         return False
+
     finally:
         client.close()

@@ -40,6 +40,7 @@ def transformer(data):
             )
 
         return formated_data
+
     except Exception as e:
         logger.error(f'Algo deu errado no tratamento: {e}')
         return False
