@@ -32,8 +32,8 @@ def extractor():
     driver.get(url=LINKEDIN_URL)
 
     try:
-        vacacy_links = driver.find_elements(by=By.CSS_SELECTOR, value=LINK_CLASS)
-        links = [element.get_attribute('href') for element in vacacy_links]
+        vacancy_links = driver.find_elements(by=By.CSS_SELECTOR, value=LINK_CLASS)
+        links = [element.get_attribute('href') for element in vacancy_links]
 
         job_objects = []
 
@@ -42,19 +42,19 @@ def extractor():
             driver.get(link)
 
             try:
-                vacacy_title = driver.find_element(by=By.CSS_SELECTOR, value=TITLE_CLASS).text
-                vacacy_company = driver.find_element(by=By.CSS_SELECTOR, value=COMPANY_CLASS).text
-                vacacy_datetime = driver.find_element(by=By.CSS_SELECTOR, value=DATETIME_CLASS).text
+                vacancy_title = driver.find_element(by=By.CSS_SELECTOR, value=TITLE_CLASS).text
+                vacancy_company = driver.find_element(by=By.CSS_SELECTOR, value=COMPANY_CLASS).text
+                vacancy_datetime = driver.find_element(by=By.CSS_SELECTOR, value=DATETIME_CLASS).text
                 request_timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                 
-                vacacy_description = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, DESCRIPTION_CLASS)))
-                vacacy_description_html = vacacy_description.get_attribute('innerHTML')
+                vacancy_description = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, DESCRIPTION_CLASS)))
+                vacancy_description_html = vacancy_description.get_attribute('innerHTML')
 
                 job_object = {
-                    'Título': vacacy_title,
-                    'Empresa': vacacy_company,
-                    'Postado': vacacy_datetime,
-                    'Descrição': vacacy_description_html,
+                    'Título': vacancy_title,
+                    'Empresa': vacancy_company,
+                    'Postado': vacancy_datetime,
+                    'Descrição': vacancy_description_html,
                     'Link': link,
                     'Data da requisição': request_timestamp
                 }
